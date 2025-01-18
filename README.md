@@ -1,0 +1,37 @@
+# dateutil
+
+A lightweight utility package for date manipulations in Go.
+
+## Features
+
+- `AddDays` - Add or subtract days from a given date.
+- `AddMonths` - Add or subtract months, with end-of-month adjustment.
+- `AddYears` - Add or subtract years, considering leap years.
+
+
+## Installation
+
+```bash
+go get github.com/qvtec/dateutil
+```
+
+## Usage
+
+``` go
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/qvtec/dateutil"
+)
+
+func main() {
+	now := time.Now()
+	fmt.Println("Today:", now)
+	fmt.Println("10 days later:", dateutil.AddDays(now, 10))
+	fmt.Println("2 months later:", dateutil.AddMonths(now, 2))
+	fmt.Println("1 year ago:", dateutil.AddYears(now, -1))
+}
+```
