@@ -16,7 +16,7 @@ func AddMonths(t time.Time, months int) time.Time {
 	// Example 1: AddMonths("2025-01-30", 1) → "2025-02-28" (since February 30 doesn't exist)
 	// Example 2: AddMonths("2025-01-31", 1) → "2025-02-28" (non-leap year)
 	//
-	// Unlike Go's AddDate, which rolls over to the next month (e.g., "2023-01-31" + 1 month → "2023-02-28"),
+	// Unlike Go's AddDate, which rolls over to the next month (e.g., "2025-01-31" + 1 month → "2025-03-03"),
 	// this function truncates the date to the last valid day of the target month.
 	if d := newDate.Day(); d != t.Day() {
 		return newDate.AddDate(0, 0, -d)
@@ -27,4 +27,14 @@ func AddMonths(t time.Time, months int) time.Time {
 // AddYears adds the specified number of years to a given time.
 func AddYears(t time.Time, years int) time.Time {
 	return AddMonths(t, years * 12)
+}
+
+// FirstOfMonth returns the first day of the month for the given date.
+func FirstOfMonth(t time.Time) time.Time {
+	return time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfMonth returns the last day of the month for the given date.
+func EndOfMonth(t time.Time) time.Time {
+	return time.Date(t.Year(), t.Month()+1, 0, 23, 59, 59, 0, t.Location())
 }
